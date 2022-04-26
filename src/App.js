@@ -24,15 +24,23 @@ function App() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     setMembers([formValues, ...members]);
+    setFormValues(initialFormValues);
   }
-
 
   return (
     <div className="App">
       <Form values={formValues} update={onChange} submit={onSubmit}/>
-      <div></div>
+      <div>
+        {members.map((member, idx) => {
+          return (
+          <div key={idx}>
+            <p>{member.name}</p>
+            <p>{member.role}</p>
+            <p>{member.email}</p>
+          </div>)
+        })}
+      </div>
     </div>
   );
 }
