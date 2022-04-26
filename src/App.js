@@ -11,28 +11,28 @@ function App() {
     role: ''
   }
 
+
+  
+
   
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [members, setMembers] = useState([]);
 
-  const updateForm = (inputName, inputValue) => {
+  const onChange = (inputName, inputValue) => {
     setFormValues({...formValues, [inputName]: inputValue});
     }
 
-  const submitForm = () => {
-    const newTeamMember = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
-      role: formValues.role.trim()
-    };
-    setTeamMembers(newTeamMember, ...teamMembers);
-    setFormValues(initialFormValues);
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    setMembers([formValues, ...members]);
   }
 
 
   return (
     <div className="App">
-      <Form values={formValues} update={updateForm} submit={submitForm}/>
+      <Form values={formValues} update={onChange} submit={onSubmit}/>
+      <div></div>
     </div>
   );
 }
